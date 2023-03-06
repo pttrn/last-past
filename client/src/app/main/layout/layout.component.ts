@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MenuComponent } from '../menu';
 import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from '../footer';
 
 @Component({
     selector: 'app-root',
@@ -10,7 +11,8 @@ import { RouterOutlet } from '@angular/router';
     standalone: true,
     imports: [
         MenuComponent,
-        RouterOutlet
+        RouterOutlet,
+        FooterComponent
     ]
 })
 export class LayoutComponent {

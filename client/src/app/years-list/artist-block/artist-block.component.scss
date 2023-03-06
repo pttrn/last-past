@@ -1,0 +1,18 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 235px;
+}
+
+.artist-image {
+    width: 200px;
+    height: 200px;
+}
+
+.artist-name {
+    margin-top: 10px;
+    height: 25px;
+    font-size: 22px;
+    text-align: center;
+}

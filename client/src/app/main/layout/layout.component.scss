@@ -1,15 +1,37 @@
 :host {
-    height: 100vh;
-    width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
+    width: 100%;
     background-color: black;
     color: white;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: [micro-span] 15px
+                           [left-span] 30px
+                           [main] auto
+                           [macro-span] 30px
+                           [micro-span] 15px;
+    grid-template-rows: [header] 30px
+                        [main] auto
+                        [footer] 50px;
+    grid-template-areas:
+        ". header header header ."
+        ". . main . ."
+        "footer footer footer footer footer";
+
+}
+
+.menu {
+    grid-area: header;
+}
+
+.footer {
+    grid-area: footer;
 }
 
 .router-container {
     height: 100%;
-    overflow-x: hidden;
     overflow-y: auto;
     padding: 0 50px;
+    grid-column-start: main;
+    grid-row-start: main;
 }

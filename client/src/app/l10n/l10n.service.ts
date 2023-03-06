@@ -8,4 +8,7 @@ export class L10nService {
 
     public readonly about$ = new BehaviorSubject('About');
     public readonly about = 'About';
+
+    public readonly artistImageAlt$ = new BehaviorSubject('artist image');
+    public readonly artistImageAlt = 'artist image';
 }
