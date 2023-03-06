@@ -1,0 +1,23 @@
+.nav {
+    display: block;
+    padding: 5px;
+
+    &-list {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        list-style: none;
+    }
+
+    &-item {
+        padding: 10px 5px;
+        font-weight: bold;
+        width: 80px;
+        flex-shrink: 1;
+    }
+
+    &-spacing {
+        width: 100%;
+        flex-grow: 1;
+    }
+}
