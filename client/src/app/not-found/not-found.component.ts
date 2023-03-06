@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     standalone: true,
-    selector: 'not-found',
+    selector: 'app-not-found',
     templateUrl: './not-found.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })

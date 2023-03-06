@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, OnDestroy, Pipe, PipeTransform } from '@angular/core';
 import { L10nService } from './l10n.service';
-import { animationFrameScheduler, BehaviorSubject, debounce, debounceTime, distinctUntilChanged, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, Observable, Subscription } from 'rxjs';
 
 @Pipe({
     name: 'l10n',
@@ -8,7 +8,7 @@ import { animationFrameScheduler, BehaviorSubject, debounce, debounceTime, disti
 })
 export class L10nPipe implements PipeTransform, OnDestroy {
     private key?: keyof L10nService;
-    private value: string = '';
+    private value = '';
     private sub?: Subscription;
 
     constructor(
