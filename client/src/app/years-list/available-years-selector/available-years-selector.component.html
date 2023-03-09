@@ -1,5 +1,6 @@
+years:
 <ul>
     <li *ngFor="let year of yearsAvailable">
-        {{ year }}
+        <a [routerLink]="year">{{year}}</a>
     </li>
 </ul>
