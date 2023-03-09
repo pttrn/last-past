@@ -5,6 +5,11 @@
                 {{'years' |  l10n }}
             </a>
         </li>
+        <li class="nav-item">
+            <app-profile-input (nameChange)="onProfileNameChange($event)"
+                               [name]="profileName$ | async"
+            ></app-profile-input>
+        </li>
         <li class="nav-spacing"></li>
         <li class="nav-item">
             <a [routerLink]="aboutRoute">

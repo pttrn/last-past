@@ -1,4 +1,4 @@
 export * from './api.module';
 export * from './api-artists-list.service';
 export * from './i-artist';
-export * from './i-starting-date';
+export * from './i-available-years';

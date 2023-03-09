@@ -1,12 +1,25 @@
 import { Injectable } from '@angular/core';
-import { IStartingDate } from './i-starting-date';
+import { IAvailableYears } from './i-available-years';
 
 @Injectable()
 export class ApiYearsAvailableService {
-    public getYearsAvailable(): Promise<IStartingDate> {
-        return new Promise<IStartingDate>((resolve) => {
+    public getYearsAvailable(profileName: string): Promise<IAvailableYears> {
+        console.log('getting years for', profileName);
+        return new Promise<IAvailableYears>((resolve, reject) => {
             setTimeout(() => {
-                resolve({ startingDate: '2008-03-07T13:36:52.539Z' });
+                if (Math.random() > 0.5) {
+                    const totalYears = Math.round(Math.random() * 20) + 1;
+                    const result: number[] = Array.from({ length: totalYears }, (_, idx) => 2000 + idx)
+                                                  .map((v) => Math.random() > 0.7 ? v : null)
+                                                  .filter((v) => !!v) as number[];
+                    if (result.length === 0) {
+                        result.push(2000);
+                    }
+                    resolve({ availableYears: result });
+                } else {
+                    reject(new Error('some weird error'));
+                }
+
             }, Math.random() * 500 + 200);
         });
     }

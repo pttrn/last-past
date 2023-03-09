@@ -1,4 +1,4 @@
-<ul class="artists-list">
+<ul class="artists-list" *ngIf="profileName$ | async">
     <li *ngFor="let artist of list$ | async"
         class="artist-item">
         <app-artist-block [imageUrl]="artist.imageUrl"
