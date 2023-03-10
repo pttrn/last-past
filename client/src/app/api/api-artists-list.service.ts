@@ -3,7 +3,8 @@ import { IArtist } from './i-artist';
 
 @Injectable()
 export class ApiArtistsListService {
-    public getArtistsList(): Promise<IArtist[]> {
+    public getArtistsList(profile: string, year: number): Promise<IArtist[]> {
+        console.log('loading artists for', profile, year);
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve([

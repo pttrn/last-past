@@ -7,6 +7,7 @@ export const YEARS_API_ACTIONS = createActionGroup({
         'Loading years': emptyProps(),
         'Available years loaded': props<{ availableYears: number[] }>(),
         'Starting year laod error': emptyProps(),
+        'Loading artists': emptyProps(),
         'Artists loaded': props<{ artists: IArtist[] }>()
     }
 })

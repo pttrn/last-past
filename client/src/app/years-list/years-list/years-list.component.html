@@ -1,8 +1,5 @@
-<ul class="artists-list" *ngIf="profileName$ | async">
-    <li *ngFor="let artist of list$ | async"
-        class="artist-item">
-        <app-artist-block [imageUrl]="artist.imageUrl"
-                          [name]="artist.name"
-        ></app-artist-block>
-    </li>
-</ul>
+<app-available-years-selector [yearsAvailable]="yearsAvailable$ | async"
+                              [yearSelected]="yearSelected$ | async"
+></app-available-years-selector>
+
+<router-outlet></router-outlet>

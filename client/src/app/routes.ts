@@ -14,13 +14,13 @@ export const routes: Routes = [
     {
         path: '**',
         loadComponent: () => import('./main/profile-specified').then((mod) => mod.ProfileSpecifiedComponent),
-        // children: [ {
-        //     path: '',
-        //     loadComponent: () => import('./years-list/available-years-selector').then((mod) => mod.NoProfileSpecifiedComponent),
-        //     pathMatch: 'full'
-        // }, {
-        //     path: '**',
-        //     loadComponent: () => import('./years-list/available-years-selector').then((mod) => mod.AvailableYearsSelectorComponent)
-        // } ]
+        children: [ {
+            path: '**',
+            loadComponent: () => import('./years-list/years-list').then((mod) => mod.YearsListComponent),
+            children: [ {
+                path: '**',
+                loadComponent: () => import('./years-list/artists-list').then((mod) => mod.ArtistsListComponent)
+            } ]
+        } ]
     }
 ];

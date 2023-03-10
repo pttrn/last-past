@@ -8,10 +8,11 @@ export const CURRENT_ROUTE_SELECTOR = createSelector(
     ROUTER_SELECTOR,
     (router) => {
         let result: string[] = [];
+        console.log(router);
         let current = router?.state?.root;
         while (current?.firstChild) {
             current = current.firstChild;
-            result = current.url.map((v) => v.path);
+            result = current.url.length ? current.url.map((v) => v.path) : result;
         }
         console.log('path:', result);
         return result;
@@ -51,4 +52,9 @@ export const YEARS_LOADING_ERROR_SELECTOR = createSelector(
 export const YEARS_AVAILBALE_SELECTOR = createSelector(
     YEARS_FEATURE_SELECTOR,
     (state) => state.availableYears
+);
+
+export const AVAILABLE_ARTISTS_SELECTOR = createSelector(
+    YEARS_FEATURE_SELECTOR,
+    (state) => state.artists
 );

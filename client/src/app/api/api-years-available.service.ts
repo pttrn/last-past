@@ -8,7 +8,7 @@ export class ApiYearsAvailableService {
         return new Promise<IAvailableYears>((resolve, reject) => {
             setTimeout(() => {
                 // if (Math.random() > 0.5) {
-                const totalYears = Math.round(Math.random() * 20) + 1;
+                const totalYears = Math.round(Math.random() * 20) + 4;
                 const result: number[] = Array.from({ length: totalYears }, (_, idx) => 2000 + idx)
                                               .map((v) => Math.random() > 0.7 ? v : null)
                                               .filter((v) => !!v) as number[];

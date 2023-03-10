@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiArtistsListService, ApiModule } from '../../api';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArtistBlockComponent } from '../artist-block/artist-block.component';
-import { IAppState } from '../../store';
+import { CURRENT_YEAR_SELECTOR, IAppState, YEARS_AVAILBALE_SELECTOR } from '../../store';
 import { Store } from '@ngrx/store';
+import { AvailableYearsSelectorComponent } from '../available-years-selector';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-years-list',
@@ -11,14 +12,17 @@ import { Store } from '@ngrx/store';
     styleUrls: [ './years-list.component.scss' ],
     imports: [
         ArtistBlockComponent,
-        ApiModule,
-        CommonModule
+        CommonModule,
+        AvailableYearsSelectorComponent,
+        RouterOutlet
     ],
     standalone: true
 })
-export class YearsListComponent implements OnInit {
+export class YearsListComponent {
+    public readonly yearsAvailable$ = this.store.select(YEARS_AVAILBALE_SELECTOR);
+    public readonly yearSelected$ = this.store.pipe(CURRENT_YEAR_SELECTOR);
+
     constructor(
-        private readonly listApi: ApiArtistsListService,
         private readonly store: Store<IAppState>
     ) {
     }

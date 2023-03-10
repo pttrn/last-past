@@ -1,0 +1,8 @@
+<ul class="artists-list">
+    <li *ngFor="let artist of artsts$ | async"
+        class="artist-item">
+        <app-artist-block [imageUrl]="artist.imageUrl"
+                          [name]="artist.name"
+        ></app-artist-block>
+    </li>
+</ul>

@@ -14,6 +14,7 @@ export class ProfileSelectionEffects {
     public readonly profileSelectedEffect = createEffect(() =>
         this.actions$.pipe(
             ofType(ROUTER_NAVIGATED),
+            tap(() => console.log('router navigated')),
             switchMap(() => this.state.pipe(CURRENT_PROFILE_SELECTOR)),
             distinctUntilChanged(),
             tap(() => {

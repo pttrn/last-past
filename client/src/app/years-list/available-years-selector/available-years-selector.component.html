@@ -1,6 +1,7 @@
 years:
 <ul>
-    <li *ngFor="let year of yearsAvailable">
-        <a [routerLink]="year">{{year}}</a>
+    <li *ngFor="let year of yearsData">
+        <a [routerLink]="year.path">{{year.label}}</a>
+        <ng-container *ngIf="yearSelected === year.year"> <- this</ng-container>
     </li>
 </ul>
