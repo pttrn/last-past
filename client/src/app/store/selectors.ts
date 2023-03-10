@@ -1,8 +1,35 @@
-import { getRouterSelectors } from '@ngrx/router-store';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { RouterReducerState } from '@ngrx/router-store';
+import { createFeatureSelector, createSelector, select } from '@ngrx/store';
 import { IAppState } from './i-app-state';
+import { distinctUntilChanged, filter, map, pipe } from 'rxjs';
 
-export const CURRENT_ROUTE_SELECTOR = getRouterSelectors().selectCurrentRoute;
+const ROUTER_SELECTOR = createFeatureSelector<RouterReducerState>('router');
+export const CURRENT_ROUTE_SELECTOR = createSelector(
+    ROUTER_SELECTOR,
+    (router) => {
+        let result: string[] = [];
+        let current = router?.state?.root;
+        while (current?.firstChild) {
+            current = current.firstChild;
+            result = current.url.map((v) => v.path);
+        }
+        console.log('path:', result);
+        return result;
+    }
+)
+
+export const CURRENT_PROFILE_SELECTOR = pipe(
+    select(CURRENT_ROUTE_SELECTOR),
+    filter((r) => !!r[0]),
+    map((r) => r[0]),
+    distinctUntilChanged()
+);
+
+export const CURRENT_YEAR_SELECTOR = pipe(
+    select(CURRENT_ROUTE_SELECTOR),
+    map((r) => +r[1] ?? null),
+    distinctUntilChanged()
+);
 
 export const YEARS_FEATURE_SELECTOR = createFeatureSelector<IAppState['years']>('years');
 
@@ -21,17 +48,7 @@ export const YEARS_LOADING_ERROR_SELECTOR = createSelector(
     (state) => state.error
 );
 
-export const YEARS_SELECTED_YEAR_SELECTOR = createSelector(
-    YEARS_FEATURE_SELECTOR,
-    (state) => state.selectedYear
-);
-
 export const YEARS_AVAILBALE_SELECTOR = createSelector(
     YEARS_FEATURE_SELECTOR,
     (state) => state.availableYears
-);
-
-export const PROFILE_NAME_SELECTOR = createSelector(
-    CURRENT_ROUTE_SELECTOR,
-    (d) => d?.url[0]?.path ?? ''
 );

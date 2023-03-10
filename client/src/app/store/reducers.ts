@@ -15,7 +15,6 @@ export const INITIAL_APP_STATE: IAppState = {
             error: null
         },
         availableYears: [],
-        selectedYear: null,
         artists: []
     }
 };
@@ -30,5 +29,5 @@ export const YEARS_REDUCER = createReducer(
     on(YEARS_API_ACTIONS.startingYearLaodError, (state) => ({ ...state, startingDate: null, yearsLoading: { inProgress: false, error: 'some error' } })),
     on(YEARS_API_ACTIONS.artistsLoaded, (state, data) => ({ ...state, artists: [ ...data.artists ] })),
     on(YEARS_API_ACTIONS.loadingYears, (state) => ({ ...state, artists: [], selectedYear: null, yearsLoading: { inProgress: true, error: null } })),
-    on(YEARS_ACTIONS.yearSelected, (state, data) => ({...state, selectedYear: data.selectedYear }))
+    on(YEARS_ACTIONS.yearSelected, (state, data) => ({ ...state, selectedYear: data.selectedYear }))
 );

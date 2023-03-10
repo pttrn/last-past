@@ -14,6 +14,7 @@ export const YEARS_API_ACTIONS = createActionGroup({
 export const YEARS_ACTIONS = createActionGroup({
     source: 'Years page',
     events: {
-        'Year selected': props<{ selectedYear: number }>()
+        'Year selected': props<{ selectedYear: number }>(),
+        'Year deselected': emptyProps(),
     }
 });

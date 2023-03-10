@@ -13,7 +13,6 @@ export interface IAppState {
             error: string | null;
         }
         availableYears: number[];
-        selectedYear: number | null;
         artists: IArtistState[];
     }
 }

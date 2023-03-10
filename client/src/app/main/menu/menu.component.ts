@@ -4,8 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ABOUT_ROUTE, YEARS_ROUTE } from '../../routes';
 import { ProfileInputComponent } from '../profile-input';
 import { AsyncPipe } from '@angular/common';
-import { IAppState } from '../../store';
-import { PROFILE_NAME_SELECTOR } from '../../store/selectors';
+import { CURRENT_PROFILE_SELECTOR, IAppState } from '../../store';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -19,7 +18,7 @@ import { Store } from '@ngrx/store';
 export class MenuComponent {
     public readonly yearsRoute = YEARS_ROUTE;
     public readonly aboutRoute = ABOUT_ROUTE;
-    public readonly profileName$ = this.store.select(PROFILE_NAME_SELECTOR);
+    public readonly profileName$ = this.store.pipe(CURRENT_PROFILE_SELECTOR)
 
     constructor(
         private router: Router,
