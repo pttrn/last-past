@@ -1,9 +1,9 @@
-import { IArtistState } from './i-artist-state';
 import { RouterState } from '@ngrx/router-store';
+import { IArtistState } from './i-artist-state';
 
 export interface IAppState {
     router: RouterState;
-    years: {
+    history: {
         yearsLoading: {
             inProgress: boolean;
             error: string | null;
@@ -12,8 +12,17 @@ export interface IAppState {
             inProgress: boolean;
             error: string | null;
         }
-        availableYears: number[];
-        artists: IArtistState[];
+        years: {
+            [year in number]: {
+                months: {
+                    [month in number]: {
+                        days: {
+                            [day in number]: IArtistState | 'not loaded yet'
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

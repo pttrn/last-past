@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CURRENT_PROFILE_SELECTOR, IAppState, YEARS_ARE_LOADING_SELECTOR, YEARS_LOADING_ERROR_SELECTOR } from '../../store';
+import { IAppState, SELECT_ARE_YEARS_LOADING, SELECT_CURRENT_PROFILE, SELECT_YEARS_LOADING_ERROR } from '../../store';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -16,9 +16,9 @@ import { RouterOutlet } from '@angular/router';
     ]
 })
 export class ProfileSpecifiedComponent {
-    public areLoading$ = this.store.select(YEARS_ARE_LOADING_SELECTOR);
-    public errorState$ = this.store.select(YEARS_LOADING_ERROR_SELECTOR);
-    public profileName$ = this.store.pipe(CURRENT_PROFILE_SELECTOR);
+    public areLoading$ = this.store.select(SELECT_ARE_YEARS_LOADING);
+    public errorState$ = this.store.select(SELECT_YEARS_LOADING_ERROR);
+    public profileName$ = this.store.select(SELECT_CURRENT_PROFILE);
 
     constructor(
         private readonly store: Store<IAppState>

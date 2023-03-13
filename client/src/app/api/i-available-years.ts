@@ -1,3 +1,9 @@
 export interface IAvailableYears {
-    readonly availableYears: number[];
+    readonly availableYears: Array<{
+        year: number;
+        months: Array<{
+            month: number;
+            days: Array<number>
+        }>
+    }>;
 }

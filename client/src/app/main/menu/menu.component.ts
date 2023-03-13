@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { L10nModule } from '../../l10n';
 import { Router, RouterModule } from '@angular/router';
-import { ABOUT_ROUTE, YEARS_ROUTE } from '../../routes';
+import { ABOUT_ROUTE, HISTORY_ROUTE } from '../../routes';
 import { ProfileInputComponent } from '../profile-input';
 import { AsyncPipe } from '@angular/common';
-import { CURRENT_PROFILE_SELECTOR, IAppState } from '../../store';
+import { IAppState, SELECT_CURRENT_PROFILE } from '../../store';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -16,9 +16,9 @@ import { Store } from '@ngrx/store';
     imports: [ L10nModule, RouterModule, ProfileInputComponent, AsyncPipe ]
 })
 export class MenuComponent {
-    public readonly yearsRoute = YEARS_ROUTE;
+    public readonly yearsRoute = HISTORY_ROUTE;
     public readonly aboutRoute = ABOUT_ROUTE;
-    public readonly profileName$ = this.store.pipe(CURRENT_PROFILE_SELECTOR)
+    public readonly profileName$ = this.store.select(SELECT_CURRENT_PROFILE)
 
     constructor(
         private router: Router,
@@ -27,6 +27,6 @@ export class MenuComponent {
     }
 
     public onProfileNameChange(name: string): void {
-        this.router.navigate([ name ]);
+        this.router.navigate([ name, HISTORY_ROUTE ]);
     }
 }

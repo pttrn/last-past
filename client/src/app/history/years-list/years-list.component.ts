@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArtistBlockComponent } from '../artist-block/artist-block.component';
-import { CURRENT_YEAR_SELECTOR, IAppState, YEARS_AVAILBALE_SELECTOR } from '../../store';
+import { IAppState, SELECT_CURRENT_YEAR, YEARS_AVAILABLE_SELECTOR } from '../../store';
 import { Store } from '@ngrx/store';
 import { AvailableYearsSelectorComponent } from '../available-years-selector';
 import { RouterOutlet } from '@angular/router';
@@ -19,8 +19,8 @@ import { RouterOutlet } from '@angular/router';
     standalone: true
 })
 export class YearsListComponent {
-    public readonly yearsAvailable$ = this.store.select(YEARS_AVAILBALE_SELECTOR);
-    public readonly yearSelected$ = this.store.pipe(CURRENT_YEAR_SELECTOR);
+    public readonly yearsAvailable$ = this.store.select(YEARS_AVAILABLE_SELECTOR);
+    public readonly yearSelected$ = this.store.select(SELECT_CURRENT_YEAR);
 
     constructor(
         private readonly store: Store<IAppState>

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { ApiArtistsListService } from './api-artists-list.service';
-import { ApiYearsAvailableService } from './api-years-available.service';
+import { ApiListeningDatesService } from './api-listening-dates.service';
 
 @NgModule({
     providers: [
         ApiArtistsListService,
-        ApiYearsAvailableService
+        ApiListeningDatesService
     ]
 })
 export class ApiModule {

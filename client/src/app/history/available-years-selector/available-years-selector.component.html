@@ -1,7 +1,10 @@
 years:
+<div>
+    selected year: {{ yearSelected }}
+</div>
 <ul>
     <li *ngFor="let year of yearsData">
-        <a [routerLink]="year.path">{{year.label}}</a>
+        <a [routerLink]="year.path" [relativeTo]="parentRoute">{{year.label}}</a>
         <ng-container *ngIf="yearSelected === year.year"> <- this</ng-container>
     </li>
 </ul>

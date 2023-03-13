@@ -1,26 +1,36 @@
 import { Routes } from '@angular/router';
 
-export const YEARS_ROUTE = 'years';
+export const HISTORY_ROUTE = 'history';
 export const ABOUT_ROUTE = 'about';
 
 export const routes: Routes = [
-    // { path: YEARS_ROUTE, loadComponent: () => import('./years-list').then((mod) => mod.YearsListComponent) },
-    // { path: ABOUT_ROUTE, loadComponent: () => import('./about').then((mod) => mod.AboutComponent) },
+    // {
+    //     path: '',
+    //     loadComponent: () => import('./main/no-profile-specified').then((mod) => mod.NoProfileSpecifiedComponent),
+    //     pathMatch: 'full'
+    // },
     {
-        path: '',
-        loadComponent: () => import('./main/no-profile-specified').then((mod) => mod.NoProfileSpecifiedComponent),
-        pathMatch: 'full'
-    },
-    {
-        path: '**',
+        path: ':profile',
         loadComponent: () => import('./main/profile-specified').then((mod) => mod.ProfileSpecifiedComponent),
         children: [ {
-            path: '**',
-            loadComponent: () => import('./years-list/years-list').then((mod) => mod.YearsListComponent),
-            children: [ {
+            path: HISTORY_ROUTE,
+            loadComponent: () => import('./history/history').then((mod) => mod.HistoryComponent),
+            children: [ { // years
+                path: ':year',
+                loadComponent: () => import('./history').then((mod) => mod.YearsListComponent),
+                children: [ { // months
+                    path: ':month',
+                    loadComponent: () => import('./history').then((mod) => mod.ArtistsListComponent)
+                } ]
+            }, {
                 path: '**',
-                loadComponent: () => import('./years-list/artists-list').then((mod) => mod.ArtistsListComponent)
-            } ]
-        } ]
+                loadComponent: () => import('./not-found').then((mod) => mod.NotFoundComponent)
+            } ],
+        },
+            // {
+            // path: '**',
+            // loadComponent: () => import('./not-found').then((mod) => mod.NotFoundComponent)
+            // }
+        ]
     }
 ];

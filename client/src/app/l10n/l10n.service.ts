@@ -3,8 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class L10nService {
-    public readonly years$ = new BehaviorSubject('Years');
-    public readonly years = 'Years';
+    public readonly history$ = new BehaviorSubject('Years');
+    public readonly history = 'Years';
 
     public readonly about$ = new BehaviorSubject('About');
     public readonly about = 'About';
