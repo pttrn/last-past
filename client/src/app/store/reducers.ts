@@ -15,6 +15,9 @@ export const INITIAL_APP_STATE: IAppState = {
             error: null
         },
         years: [],
+        topArtistsInTimeSpan: null,
+        topTrackInTimeSpan: null,
+        orderdTracksInTimeSpan: null
     }
 };
 
@@ -23,13 +26,8 @@ export const YEARS_REDUCER = createReducer(
     on(YEARS_API_ACTIONS.availableYearsLoaded, (state, data) => {
         const years: IAppState['history']['years'] = {};
         data.availableYears.forEach((y) => {
-            years[y.year] = { months: [] };
-            y.months.forEach((m) => {
-                years[y.year].months[m.month] = { days: [] };
-                m.days.forEach((d) => years[y.year].months[m.month].days[d] = 'not loaded yet')
-            });
+            years[y.year] = { days: y.days };
         })
-        console.log(data, years);
         return { ...state, years };
     }),
 

@@ -1,11 +1,11 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { IArtist, IAvailableYears } from '../api';
+import { IArtist, IPlaybackDates } from '../api';
 
 export const YEARS_API_ACTIONS = createActionGroup({
     source: 'Years API',
     events: {
         'Loading years': emptyProps(),
-        'Available years loaded': props<IAvailableYears>(),
+        'Available years loaded': props<IPlaybackDates>(),
         'Starting year laod error': emptyProps(),
         'Loading artists': emptyProps(),
         'Artists loaded': props<{ artists: IArtist[], profile: string }>()

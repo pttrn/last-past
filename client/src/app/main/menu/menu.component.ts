@@ -4,8 +4,10 @@ import { Router, RouterModule } from '@angular/router';
 import { ABOUT_ROUTE, HISTORY_ROUTE } from '../../routes';
 import { ProfileInputComponent } from '../profile-input';
 import { AsyncPipe } from '@angular/common';
-import { IAppState, SELECT_CURRENT_PROFILE } from '../../store';
+import { IAppState, ROUTER_PAYLOAD_SELECTOR, RouterPayload, SELECT_CURRENT_PROFILE } from '../../store';
 import { Store } from '@ngrx/store';
+import { filter, map, take } from 'rxjs';
+import { UrlFromPayloadBuilderService } from '../../store/url-from-payload-builder.service';
 
 @Component({
     selector: 'app-menu',
@@ -22,11 +24,17 @@ export class MenuComponent {
 
     constructor(
         private router: Router,
-        private readonly store: Store<IAppState>
+        private readonly store: Store<IAppState>,
+        private urbBuilder: UrlFromPayloadBuilderService
     ) {
     }
 
     public onProfileNameChange(name: string): void {
-        this.router.navigate([ name, HISTORY_ROUTE ]);
+        this.store.select(ROUTER_PAYLOAD_SELECTOR).pipe(
+            take(1),
+            filter((r) => !!r),
+            map((r) => ({ ...r, profile: name })),
+            map((r) => this.urbBuilder.buildUrl(r as RouterPayload))
+        ).subscribe((v) => this.router.navigate(v));
     }
 }

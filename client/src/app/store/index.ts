@@ -5,3 +5,4 @@ export * from './i-artist-state';
 export * from './effects/profile-selection-effects.service';
 export * from './selectors';
 export * from './effects';
+export * from './provide-app-store';

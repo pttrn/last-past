@@ -1,42 +1,29 @@
 import { Injectable } from '@angular/core';
-import { IAvailableYears } from './i-available-years';
+import { IPlaybackDates } from './i-playback-dates';
 
 @Injectable()
 export class ApiListeningDatesService {
-    public getYearsAvailable(profileName: string): Promise<IAvailableYears> {
+    public getYearsAvailable(profileName: string): Promise<IPlaybackDates> {
         console.log('getting years for', profileName);
-        return new Promise<IAvailableYears>((resolve, reject) => {
+        return new Promise<IPlaybackDates>((resolve, reject) => {
             setTimeout(() => {
-                const result: IAvailableYears = {
+                const result: IPlaybackDates = {
                     availableYears: []
                 };
-                const totalYearsCount = Math.round(Math.random() * 10 + 2);
+                const totalYearsCount = Math.round(Math.random() * 10 + 20);
                 const nowYear = new Date().getFullYear();
                 for (let yearOffset = 0; result.availableYears.length < totalYearsCount; yearOffset++) {
-                    if (Math.random() > 0.5) {
+                    if (Math.random() > 2) {
                         continue;
                     }
-                    const year: IAvailableYears['availableYears'][0] = {
+                    const year: IPlaybackDates['availableYears'][0] = {
                         year: nowYear - yearOffset,
-                        months: []
+                        days: []
                     };
-                    const months = Math.round(Math.random() * 11 + 1);
-                    for (let month = 0; year.months.length < months; month++) {
-                        if (Math.random() > 0.5) {
-                            continue;
+                    for (let i = 0; i < 365; i++) {
+                        if (Math.random() > 0) {
+                            year.days.push(i);
                         }
-                        const monthData: IAvailableYears['availableYears'][0]['months'][0] = {
-                            month,
-                            days: []
-                        };
-                        const days = Math.round(Math.random() * 29) + 1;
-                        for (let day = 0; monthData.days.length < days; day++) {
-                            if (Math.random() > 0.5) {
-                                continue;
-                            }
-                            monthData.days.push(day);
-                        }
-                        year.months.push(monthData);
                     }
                     result.availableYears.push(year);
                 }

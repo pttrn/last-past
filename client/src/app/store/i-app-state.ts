@@ -1,5 +1,4 @@
 import { RouterState } from '@ngrx/router-store';
-import { IArtistState } from './i-artist-state';
 
 export interface IAppState {
     router: RouterState;
@@ -14,15 +13,11 @@ export interface IAppState {
         }
         years: {
             [year in number]: {
-                months: {
-                    [month in number]: {
-                        days: {
-                            [day in number]: IArtistState | 'not loaded yet'
-                        }
-                    }
-                }
+                days: number[]
             }
-        }
+        },
+        topArtistsInTimeSpan: null;
+        orderdTracksInTimeSpan: null;
+        topTrackInTimeSpan: null;
     }
 }
-

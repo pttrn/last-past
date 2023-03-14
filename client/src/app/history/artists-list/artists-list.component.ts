@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AVAILABLE_ARTISTS_SELECTOR, IAppState } from '../../store';
+import { IAppState } from '../../store';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { ArtistBlockComponent } from '../artist-block/artist-block.component';
+import { of } from 'rxjs';
 
 @Component({
     standalone: true,
@@ -16,7 +17,7 @@ import { ArtistBlockComponent } from '../artist-block/artist-block.component';
     ]
 })
 export class ArtistsListComponent {
-    public readonly artsts$ = this.store.select(AVAILABLE_ARTISTS_SELECTOR);
+    public readonly artsts$ = of([]);
 
     constructor(
         private readonly store: Store<IAppState>

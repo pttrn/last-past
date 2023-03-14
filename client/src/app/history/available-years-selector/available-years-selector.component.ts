@@ -38,7 +38,7 @@ export class AvailableYearsSelectorComponent {
         const parentPath = this.parentRoute?.snapshot.url.slice(0, -1).map((v) => v.path) ?? [];
         this._yearsAvailable = (v ?? []).map((year) => ({
             label: year.toString(),
-            path: [ './', year.toString() ].join('/'),
+            path: [ '.', 'history', year.toString() ].join('/'),
             year
         }));
     }

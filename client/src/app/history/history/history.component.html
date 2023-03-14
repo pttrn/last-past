@@ -1,2 +1,7 @@
-this is history
-<router-outlet></router-outlet>
+<app-available-years-selector [yearsAvailable]="yearsAvailable$ | async"
+                              [yearSelected]="yearSelected$ | async"
+></app-available-years-selector>
+
+<app-months-selector *ngIf="yearSelected$ | async"
+                     [year]="yearSelected$ | async"
+></app-months-selector>

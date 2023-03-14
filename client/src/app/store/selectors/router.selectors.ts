@@ -13,6 +13,7 @@ export type HistoryFeatureRouterPayload = {
     feature: 'history',
     selectedYear: number | null;
     selectedMonth: number | null;
+    selectedDay: number | null;
 };
 
 type RouterParams = {
@@ -20,6 +21,7 @@ type RouterParams = {
     feature?: 'history';
     year?: string;
     month?: string;
+    day?: string;
 }
 
 const ROUTER_SELECTOR = createFeatureSelector<RouterReducerState>('router');
@@ -72,6 +74,7 @@ function extractHistoryFeaturePayload(params: Readonly<RouterParams>): HistoryFe
         feature: 'history',
         profile: params['profile'] ?? '',
         selectedYear: params?.year !== undefined ? +params.year : null,
-        selectedMonth: params?.month !== undefined ? +params.month : null
+        selectedMonth: params?.month !== undefined ? +params.month : null,
+        selectedDay: params?.day !== undefined ? +params.day : null
     }
 }
